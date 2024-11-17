@@ -1,13 +1,13 @@
 {
-  "name": "format-scaffolding-commitlint-config",
+  "name": "format-scaffolding-markdownlint-config",
   "version": "0.0.0",
-  "main": "index.js",
-  "description": "git 提交规范",
+  "main": "index.json",
+  "description": "markdown 规范",
   "keywords": [
-    "commit",
+    "markdown",
     "lint"
   ],
-  "author": "jimchou-h",
+  "author": "huangjingzhou <1249293339@qq.com>",
   "homepage": "https://github.com/jimchou-h/format-scaffolding#readme",
   "license": "ISC",
   "repository": {
@@ -16,8 +16,5 @@
   },
   "bugs": {
     "url": "https://github.com/jimchou-h/format-scaffolding/issues"
-  },
-  "dependencies": {
-    "conventional-changelog-conventionalcommits": "^8.0.0"
   }
 }

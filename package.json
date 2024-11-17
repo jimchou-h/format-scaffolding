@@ -1,15 +1,12 @@
 {
   "name": "format-scaffolding",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "dependencies": {
     "lerna": "^8.1.9"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky install",
+    "prepare": "husky",
     "init": "pnpm install",
     "clean": "lerna clean && rm -rf node_modules",
     "test": "lerna run test",
@@ -21,5 +18,12 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "husky": "^9.1.6",
+    "markdownlint": "^0.36.1",
+    "vue": "^3.5.13",
+    "vuepress": "^1.9.9"
   }
 }
