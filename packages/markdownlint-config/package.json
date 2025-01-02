@@ -1,10 +1,10 @@
 {
-  "name": "fs-commitlint-config",
+  "name": "fs-markdownlint-config",
   "version": "0.0.0",
-  "main": "index.js",
-  "description": "git 提交规范",
+  "main": "index.json",
+  "description": "markdown 规范",
   "keywords": [
-    "commit",
+    "markdown",
     "lint"
   ],
   "author": "jimchou-h",
@@ -16,8 +16,5 @@
   },
   "bugs": {
     "url": "https://github.com/jimchou-h/format-scaffolding/issues"
-  },
-  "dependencies": {
-    "conventional-changelog-conventionalcommits": "^8.0.0"
   }
 }
