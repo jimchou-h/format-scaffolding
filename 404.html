@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.18" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const systemDarkMode =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (userMode === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (userMode === 'dark' || systemDarkMode) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>代码规范</title><meta name="description" content="">
+    <link rel="preload" href="/assets/style-CBWXLRIg.css" as="style"><link rel="stylesheet" href="/assets/style-CBWXLRIg.css">
+    <link rel="modulepreload" href="/assets/app-DOaM-xLU.js"><link rel="modulepreload" href="/assets/404.html-ChuqhAld.js">
+    <link rel="prefetch" href="/assets/index.html-DUzGki4v.js" as="script"><link rel="prefetch" href="/assets/css.html-CL_0YEKP.js" as="script"><link rel="prefetch" href="/assets/html.html-Cz8k689u.js" as="script"><link rel="prefetch" href="/assets/javascript.html-DBaH6fC5.js" as="script"><link rel="prefetch" href="/assets/node.html-Dq4Hq1bQ.js" as="script"><link rel="prefetch" href="/assets/typescript.html-BVRbRJ6K.js" as="script"><link rel="prefetch" href="/assets/changelog.html-B8kRDO_S.js" as="script"><link rel="prefetch" href="/assets/doc.html-Ca7kwv9P.js" as="script"><link rel="prefetch" href="/assets/git.html-D2xdH1XV.js" as="script"><link rel="prefetch" href="/assets/setupDevtools-7MC2TMWH-B_hSA7--.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container" vp-container data-v-36a244cb><main class="page" data-v-36a244cb><div class="theme-default-content" vp-content data-v-36a244cb><h1 data-v-36a244cb>404</h1><blockquote data-v-36a244cb>How did we get here?</blockquote><a class="route-link" href="/" data-v-36a244cb>Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/assets/app-DOaM-xLU.js" defer></script>
+  </body>
+</html>
