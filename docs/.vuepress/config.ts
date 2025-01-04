@@ -75,4 +75,5 @@ export default defineUserConfig({
   lang: 'zh-CN',
   title: '代码规范',
   description: '',
+	base: "/format-scaffolding/"
 })
