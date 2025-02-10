@@ -1,0 +1,45 @@
+{
+  "name": "fe-lint",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "huangjingzhou <1249293339@qq.com>",
+  "homepage": "https://github.com/jimchou-h/format-scaffolding#readme",
+  "license": "ISC",
+  "main": "lib/fe-lint.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimchou-h/format-scaffolding.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/fe-lint.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/jimchou-h/format-scaffolding/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.10",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "command-exists": "^1.2.9",
+    "cross-spawn": "^7.0.6",
+    "eslint": "^9.19.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
+    "inquirer": "^12.4.1",
+    "markdownlint": "^0.36.1",
+    "ora": "^8.1.1",
+    "stylelint": "^14.3.0"
+  }
+}
