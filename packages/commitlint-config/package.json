@@ -1,5 +1,5 @@
 {
-  "name": "fs-commitlint-config",
+  "name": "commitlint-config-format-scaffolding",
   "version": "0.0.0",
   "main": "index.js",
   "description": "git 提交规范",

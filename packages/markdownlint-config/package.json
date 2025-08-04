@@ -1,5 +1,5 @@
 {
-  "name": "fs-markdownlint-config",
+  "name": "markdownlint-config-format-scaffolding",
   "version": "0.0.0",
   "main": "index.json",
   "description": "markdown 规范",

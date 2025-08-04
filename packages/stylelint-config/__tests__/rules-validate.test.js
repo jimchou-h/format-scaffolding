@@ -53,7 +53,7 @@ describe('test/rules-validate.test.js', () => {
       files: filePaths,
       fix: false,
     });
-
+    console.log(result)
     if (result && result.errored) {
       const filesResult = JSON.parse(result.output || '[]') || [];
       filesResult.forEach((fileResult) => {

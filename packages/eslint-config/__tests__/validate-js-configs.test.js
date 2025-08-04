@@ -2,24 +2,24 @@
  * 验证 JS
  */
 
-const assert = require("assert");
-const eslint = require("eslint");
-const path = require("path");
-const sumBy = require("lodash/sumBy");
+const assert = require('assert');
+const eslint = require('eslint');
+const path = require('path');
+const sumBy = require('lodash/sumBy');
 
 function isObject(obj) {
-  return typeof obj === "object" && obj !== null;
+  return typeof obj === 'object' && obj !== null;
 }
 
-describe("Validate JS configs", () => {
-  it("Validate eslint-config", async () => {
-    const configPath = "./index.js";
-    const filePath = path.join(__dirname, "./fixtures/index.js");
+describe('Validate JS configs', () => {
+  it('Validate eslint-config-format-scaffolding', async () => {
+    const configPath = './index.js';
+    const filePath = path.join(__dirname, './fixtures/index.js');
 
     const cli = new eslint.ESLint({
       overrideConfigFile: configPath,
-      useEslintrc: false, // 忽略当前目录下的 eslintrc
-      ignore: false, // 忽略当前目录下的 ignore
+      useEslintrc: false, // 如果不关这个参数，会将目录下的 eslintrc 与 overrideConfigFile merge
+      ignore: false,
     });
 
     // 验证导出的 config 是否正常
@@ -28,13 +28,13 @@ describe("Validate JS configs", () => {
 
     // 验证 lint 工作是否正常
     const results = await cli.lintFiles([filePath]);
-    assert.equal(sumBy(results, "fatalErrorCount"), 0);
-    assert.notEqual(sumBy(results, "errorCount"), 0);
-    assert.notEqual(sumBy(results, "warningCount"), 0);
+    assert.equal(sumBy(results, 'fatalErrorCount'), 0);
+    assert.notEqual(sumBy(results, 'errorCount'), 0);
+    assert.notEqual(sumBy(results, 'warningCount'), 0);
   });
 
-  it('Validate eslint-config/es5', async () => {
-    const configPath = "./es5.js";
+  it('Validate eslint-config-format-scaffolding/es5', async () => {
+    const configPath = './es5.js';
     const filePath = path.join(__dirname, './fixtures/es5.js');
 
     const cli = new eslint.ESLint({
@@ -56,12 +56,12 @@ describe("Validate JS configs", () => {
     // 验证 es5 覆盖的规则是否正常，取 comma-dangle 进行测试
     const { messages } = results[0];
     const errorReportedByReactPlugin = messages.filter((result) => {
-      return result.ruleId === "comma-dangle";
+      return result.ruleId === 'comma-dangle';
     });
     assert.notEqual(errorReportedByReactPlugin.length, 0);
-  })
+  });
 
-  it('Validate eslint-config-encode/vue', async () => {
+  it('Validate eslint-config-format-scaffolding/vue', async () => {
     const configPath = './vue.js';
     const filePath = path.join(__dirname, './fixtures/vue.vue');
 
@@ -87,9 +87,9 @@ describe("Validate JS configs", () => {
       return result.ruleId && result.ruleId.indexOf('vue/') !== -1;
     });
     assert.notEqual(errorReportedByReactPlugin.length, 0);
-  })
+  });
 
-  it('Validate eslint-config/essential', async () => {
+  it('Validate eslint-config-format-scaffolding/essential', async () => {
     const configPath = './essential/index.js';
     const filePath = path.join(__dirname, './fixtures/index.js');
 
@@ -123,9 +123,9 @@ describe("Validate JS configs", () => {
       return result.ruleId === 'comma-spacing';
     });
     assert.equal(commaSpacingErrors[0].severity, 1);
-  })
+  });
 
-  it('Validate eslint-config-encode/essential/es5', async () => {
+  it('Validate eslint-config-format-scaffolding/essential/es5', async () => {
     const configPath = './essential/es5.js';
     const filePath = path.join(__dirname, './fixtures/es5.js');
 
@@ -158,7 +158,7 @@ describe("Validate JS configs", () => {
     assert.equal(errorReportedByReactPluginBlackList.length, 0);
   });
 
-  it('Validate eslint-config-encode/essential/react', async () => {
+  it('Validate eslint-config-format-scaffolding/essential/react', async () => {
     const configPath = './essential/react.js';
     const filePath = path.join(__dirname, './fixtures/react.jsx');
 
@@ -190,7 +190,8 @@ describe("Validate JS configs", () => {
     });
     assert.equal(errorReportedByReactPluginBlackList.length, 0);
   });
-  it('Validate eslint-config-encode/essential/vue', async () => {
+
+  it('Validate eslint-config-format-scaffolding/essential/vue', async () => {
     const configPath = './essential/vue.js';
     const filePath = path.join(__dirname, './fixtures/vue.vue');
 
@@ -224,7 +225,7 @@ describe("Validate JS configs", () => {
     assert.equal(errorReportedByReactPluginBlackList.length, 0);
   });
 
-  it('Validate eslint-config-encode/node', async () => {
+  it('Validate eslint-config-format-scaffolding/node', async () => {
     const configPath = './node.js';
     const filePath = path.join(__dirname, './fixtures/node.js');
 

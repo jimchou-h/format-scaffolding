@@ -1,6 +1,6 @@
 {
-  "name": "fc-stylelint-config",
-  "version": "0.0.5",
+  "name": "stylelint-config-format-scaffolding",
+  "version": "0.0.0",
   "description": "CSS规范",
   "main": "index.js",
   "keywords": [
