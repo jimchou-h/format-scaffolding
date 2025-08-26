@@ -8,14 +8,12 @@ import { PRETTIER_FILE_EXT, PRETTIER_IGNORE_PATTERN } from "../../utils/constant
 export interface DoPrettierOptions extends ScanOptions {}
 
 export async function doPrettier(options: DoPrettierOptions) {
-  console.log('doPrettier', '触发')
   let files: string[] = []
   if (options.files) {
     files = options.files.filter((name) => PRETTIER_FILE_EXT.includes(extname(name)))
   } else {
     const pattern = posix.join(options.include, `**/*.{${PRETTIER_FILE_EXT.map((t) => t.replace(/^\./, '')).join(',')}}`)
     files = await fg(pattern, { cwd: options.cwd, ignore: PRETTIER_IGNORE_PATTERN })
-    console.log('doPrettier', files)
   }
   await Promise.all(files.map(formatFile))
 }

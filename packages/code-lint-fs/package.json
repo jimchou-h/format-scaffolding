@@ -1,6 +1,6 @@
 {
   "name": "code-lint-fs",
-  "version": "0.1.2",
+  "version": "1.0.2",
   "description": "前端编码规范工程化标准脚手架",
   "author": "huangjingzhou <1249293339@qq.com>",
   "homepage": "https://github.com/jimchou-h/format-scaffolding#readme",
@@ -22,11 +22,12 @@
     "url": "git+https://github.com/jimchou-h/format-scaffolding.git"
   },
   "scripts": {
-    "dev": "npm run copyfiles && tsc",
+    "dev": "npm run copyfiles && tsc -w",
+    "build": "rimraf lib && npm run copyfiles && tsc",
     "copyfiles": "copyfiles -a -u 1 \"src/config/**\" lib",
-    "test": "npm run dev && jest --verbose --silent=false",
-    "coverage": "npm run dev && jest --coverage --silent --forceExit",
-    "publish": "npm run dev && npm publish"
+    "test": "npm run build && jest --verbose --silent=false",
+    "coverage": "npm run build && jest --coverage --silent --forceExit",
+    "prepublishOnly": "npm run test"
   },
   "bugs": {
     "url": "https://github.com/jimchou-h/format-scaffolding/issues"
@@ -46,13 +47,14 @@
     "copyfiles": "^2.4.1",
     "jest": "^27.5.1",
     "nyc": "^15.1.0",
+    "rimraf": "^6.0.1",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {
+    "commitlint-config-format-scaffolding": "^0.0.0",
     "eslint-config-format-scaffolding": "^0.0.0",
-    "stylelint-config-format-scaffolding": "^0.0.0",
     "markdownlint-config-format-scaffolding": "^0.0.0",
-    "commitlint-config-format-scaffolding": "^0.0.0"
+    "stylelint-config-format-scaffolding": "^0.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",

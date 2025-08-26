@@ -21,9 +21,8 @@ export async function doStylelint(options: DoStylelintOptions) {
     );
     files = await fg(pattern, {
       cwd: options.cwd,
-      ignore: STYLELINT_IGNORE_PATTERN,
+      ignore: STYLELINT_IGNORE_PATTERN.map((pattern) => pattern.endsWith('/') ? `${pattern}**` : pattern),
     });
-    console.log('doStylelint', files)
   }
   const data = await stylelint.lint({
     ...getStylelintConfig(options, options.pkg, options.config),

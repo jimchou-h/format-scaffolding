@@ -20,7 +20,6 @@ export async function doESLint(options: DoESLintOptions) {
       cwd: options.cwd,
       ignore: ESLINT_IGNORE_PATTERN
     })
-    console.log('doESLint', files)
   }
 
   const eslint = new ESLint(getESLintConfig(options, options.pkg, options.config))

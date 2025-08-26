@@ -1,0 +1,2 @@
+{ "extends": "markdownlint-config-format-scaffolding", "MD025": false,
+  "MD041": false }

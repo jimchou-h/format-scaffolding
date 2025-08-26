@@ -26,7 +26,6 @@ export async function doMarkdownlint(options: DoMarkdownlintOptions) {
       cwd: options.cwd,
       ignore: MARKDOWN_LINT_IGNORE_PATTERN.map((pattern) => `**/${pattern}**`),
     });
-    console.log('doMarkdownlint', files)
   }
   const results = await markdownlint.promises.markdownlint({
     ...getMarkdownlintConfig(options, options.pkg, options.config),
