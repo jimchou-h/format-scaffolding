@@ -1,0 +1,6 @@
+module.exports = {
+  extends: [
+    '<%= eslintType === "index" ? "eslint-config-format-scaffolding" : `eslint-config-format-scaffolding/${eslintType}` %>',
+    <% if (enablePrettier) { %>'prettier'<% } %>
+  ],
+};

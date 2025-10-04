@@ -22,7 +22,7 @@ export function getStylelintConfig(opts: ScanOptions, pkg: PKG, config: Config):
     Object.assign(lintConfig, config.stylelintOptions);
   } else {
     // 根据扫描目录下有无lintrc文件，若无则使用默认的 lint 配置
-    const lintConfigFiles = glob.sync('.stylelintrc?(.@(js|yaml|yml|json))', { cwd, dot: true, noglobstar: true, nobrace: true });
+    const lintConfigFiles = glob.sync('.stylelintrc?(.@(js|cjs|yaml|yml|json))', { cwd, dot: true, noglobstar: true, nobrace: true });
     if (lintConfigFiles.length === 0 && !pkg.stylelint) {
       lintConfig.config = {
         extends: 'stylelint-config-format-scaffolding',

@@ -65,7 +65,7 @@ export interface ScanOptions {
   fix?: boolean;
   // 生成报告文件
   outputReport?: boolean;
-  // scan 时指定 code-lint-fs config，优先级高于 code-lint-fs.config.js
+  // scan 时指定 code-lint-fs config，优先级高于 code-lint-fs.config.cjs
   config?: Config;
 }
 

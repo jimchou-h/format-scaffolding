@@ -36,14 +36,15 @@ const packagePrefixesToRemove = [
  */
 const checkUselessConfig = (cwd: string): string[] => {
   return []
-    .concat(glob.sync('.eslintrc?(.@(yaml|yml|json))', { cwd }))
-    .concat(glob.sync('.stylelintrc?(.@(yaml|yml|json))', { cwd }))
-    .concat(glob.sync('.markdownlint@(rc|.@(yaml|yml|jsonc))', { cwd }))
+    .concat(glob.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd }))
+    .concat(glob.sync('.stylelintrc?(.@(js|cjs|yaml|yml|json))', { cwd }))
+    .concat(glob.sync('.markdownlint@(rc|.@(yaml|yml|json|jsonc))', { cwd }))
     .concat(
-      glob.sync('.prettierrc?(.@(cjs|config.js|config.cjs|yaml|yml|json|json5|toml))', { cwd }),
+      glob.sync('.prettierrc?(.@(js|cjs|config.js|config.cjs|yaml|yml|json|json5|toml))', { cwd }),
     ) 
     .concat(glob.sync('tslint.@(yaml|yml|json)', { cwd }))
-    .concat(glob.sync('.kylerc?(.@(yaml|yml|json))', { cwd }));
+    .concat(glob.sync('.kylerc?(.@(yaml|yml|json))', { cwd }))
+    .concat(glob.sync('{commitlint.config.js,.commitlintrc?(.@(js|json|yaml|yml))}', { cwd }));
 };
 
 /**

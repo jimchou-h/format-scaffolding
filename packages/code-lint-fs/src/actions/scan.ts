@@ -13,7 +13,7 @@ export default async (options: ScanOptions): Promise<ScanReport> => {
     return fs.existsSync(localPath) ? require(localPath) : {}
   }
   const pkg: PKG = readConfigFile('package.json')
-  const config: Config = scanConfig || readConfigFile(`${PKG_NAME}.config.js`)
+  const config: Config = scanConfig || readConfigFile(`${PKG_NAME}.config.cjs`)
   const runErrors: Error[] = []
   let results: ScanResult[] = []
 

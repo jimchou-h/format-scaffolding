@@ -1,1 +1,3 @@
-<%_ if (enableMarkdownlint) { _%> { "extends": "markdownlint-config-format-scaffolding" } <%_ } _%>
+<% if (enableMarkdownlint) { %>
+<%- JSON.stringify({ extends: "markdownlint-config-format-scaffolding" }, null, 2) %>
+<% } %>

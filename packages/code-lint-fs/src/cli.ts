@@ -49,7 +49,7 @@ program
   .option('--vscode', '写入.vscode/setting.json配置')
   .action(async (cmd) => {
     if (cmd.vscode) {
-      const configPath = path.resolve(cwd, `${PKG_NAME}.config.js`);
+      const configPath = path.resolve(cwd, `${PKG_NAME}.config.cjs`);
       generateTemplate(cwd, require(configPath), true);
     } else {
       await init({

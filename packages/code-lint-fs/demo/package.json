@@ -4,8 +4,20 @@
   "description": "code-lint-fs init test",
   "main": "index.js",
   "scripts": {
-    "scan": "node ../lib/cli.js scan"
+    "init": "node ../lib/cli.js init",
+    "scan": "node ../lib/cli.js scan",
+    "code-lint-fs-scan": "code-lint-fs scan",
+    "code-lint-fs-fix": "code-lint-fs fix"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "code-lint-fs commit-file-scan",
+      "commit-msg": "code-lint-fs commit-msg-scan"
+    }
+  },
+  "devDependencies": {
+    "code-lint-fs": "^1.0.2"
+  }
 }
