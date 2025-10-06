@@ -1,9 +1,6 @@
 {
   "name": "format-scaffolding",
   "private": true,
-  "dependencies": {
-    "lerna": "^8.1.9"
-  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
@@ -18,6 +15,9 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "lerna": "^8.1.9"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
