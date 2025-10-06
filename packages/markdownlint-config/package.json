@@ -1,6 +1,6 @@
 {
   "name": "markdownlint-config-format-scaffolding",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "main": "index.json",
   "description": "markdown 规范",
   "keywords": [

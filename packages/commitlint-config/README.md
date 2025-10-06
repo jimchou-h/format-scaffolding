@@ -1,4 +1,4 @@
-# `format-scaffolding-commitlint-config`
+# `commitlint-config-format-scaffolding`
 
 支持配套的 [commitlint 配置](https://commitlint.js.org/#/concepts-shareable-config)，用于对 `git commit message` 进行校验。
 
@@ -7,7 +7,7 @@
 使用时，需要安装 [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli)：
 
 ```bash
-npm install @commitlint/cli format-scaffolding-commitlint-config --save-dev
+npm install @commitlint/cli commitlint-config-format-scaffolding --save-dev
 ```
 
 ## 使用
@@ -16,7 +16,7 @@ npm install @commitlint/cli format-scaffolding-commitlint-config --save-dev
 
 ```javascript
 module.exports = {
-  extends: ["format-scaffolding-commitlint-config"],
+  extends: ["commitlint-config-format-scaffolding"],
 };
 ```
 

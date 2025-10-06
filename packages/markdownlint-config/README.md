@@ -1,4 +1,4 @@
-# format-scaffolding-markdownlint-config
+# markdownlint-config-format-scaffolding
 
 支持配套的 [markdownlint 可共享配置](https://www.npmjs.com/package/markdownlint#optionsconfig)。
 
@@ -7,7 +7,7 @@
 需要先行安装 [markdownlint](https://www.npmjs.com/package/markdownlint)：
 
 ```bash
-npm install markdownlint format-scaffolding-markdownlint-config --save-dev
+npm install markdownlint markdownlint-config-format-scaffolding --save-dev
 ```
 
 ## 使用
@@ -16,6 +16,6 @@ npm install markdownlint format-scaffolding-markdownlint-config --save-dev
 
 ```json
 {
-  "extends": "format-scaffolding-markdownlint-config"
+  "extends": "markdownlint-config-format-scaffolding"
 }
 ```

@@ -1,6 +1,6 @@
 {
   "name": "commitlint-config-format-scaffolding",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "description": "git 提交规范",
   "keywords": [
