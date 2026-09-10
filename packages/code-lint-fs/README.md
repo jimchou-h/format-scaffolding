@@ -37,7 +37,7 @@ npm install code-lint-fs -g
 
 具体会做以下事情：
 
-- 安装各种依赖：包括 `Linter` 依赖，如 [ESLint](https://eslint.org/)、[stylelint](https://stylelint.io/)、[commitlint](https://commitlint.js.org/#/)、[markdownlint](https://github.com/DavidAnson/markdownlint) 等；配置依赖，如 [eslint-config-format-scaffolding](https://www.npmjs.com/package/eslint-config-format-scaffolding)、[stylelint-config-format-scaffolding](https://www.npmjs.com/package/stylelint-config-format-scaffolding)、[commitlint-config-format-scaffolding](https://www.npmjs.com/package/commitlint-config-format-scaffolding)、[markdownlint-config-format-scaffolding](https://www.npmjs.com/package/markdownlint-config-format-scaffolding) 等
+- 将规范所需依赖写入项目 `devDependencies` 并安装：脚手架 `code-lint-fs`、四个 extends 包，以及 `eslint` / `husky` / `@commitlint/cli` 等引擎（`stylelint`、`prettier` 等按 init 选项）。依赖必须是项目的**直接依赖**，否则 pnpm 无法解析 `extends` 与编辑器插件。已有项目升级到 1.1.0 后请再执行一次 `code-lint-fs init`。
 - 写入各种配置文件，包括：
   - `.eslintrc.js`、`.eslintignore`：ESLint 配置（继承 `eslint-config-format-scaffolding`）及黑名单文件
   - `.stylelintrc.js`、`.stylelintignore`：stylelint 配置（继承 `stylelint-config-format-scaffolding`）及黑名单文件

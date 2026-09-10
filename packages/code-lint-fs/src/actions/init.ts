@@ -8,6 +8,7 @@ import npmType from '../utils/npm-type';
 import conflictResolve from '../utils/conflict-resolve';
 import generateTemplate from '../utils/generate-template';
 import { PROJECT_TYPES, PKG_NAME } from '../utils/constants';
+import { getInitDevDependencies } from '../utils/init-deps';
 import type { InitOptions, PKG } from '../types';
 
 let step = 0;
@@ -157,6 +158,10 @@ export default async (options: InitOptions) => {
   if (!pkg.husky.hooks) pkg.husky.hooks = {};
   pkg.husky.hooks['pre-commit'] = `${PKG_NAME} commit-file-scan`;
   pkg.husky.hooks['commit-msg'] = `${PKG_NAME} commit-msg-scan`;
+
+  if (!pkg.devDependencies) pkg.devDependencies = {};
+  Object.assign(pkg.devDependencies, getInitDevDependencies(config));
+
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
   log.success(`Step ${step}. 配置 git commit 卡点成功 :D`);
 
@@ -168,7 +173,7 @@ export default async (options: InitOptions) => {
     if (!disableNpmInstall) {
       log.info(`Step ${++step}. 安装依赖`);
       const npm = await npmType;
-      spawn.sync(npm, ['i', '-D', PKG_NAME], { stdio: 'inherit', cwd });
+      spawn.sync(npm, ['i'], { stdio: 'inherit', cwd });
       log.success(`Step ${step}. 安装依赖成功 :D`);
     }
   }

@@ -29,6 +29,21 @@ describe('lint', () => {
     expect(settings['editor.defaultFormatter']).toBe('esbenp.prettier-vscode');
     expect(settings['eslint.validate'].includes('233')).toBeTruthy();
     expect(settings.test).toBeTruthy();
+    expect(fs.existsSync(`${outputPath}/.npmrc`)).toBe(false);
+    expect(pkg.devDependencies).toMatchObject({
+      'code-lint-fs': '^1.1.0',
+      'eslint-config-format-scaffolding': '^1.1.0',
+      eslint: '^8.7.0',
+      husky: '^3.1.0',
+      'commitlint-config-format-scaffolding': '^1.1.0',
+      '@commitlint/cli': '^16.0.0',
+      'stylelint-config-format-scaffolding': '^1.1.0',
+      stylelint: '^14.3.0',
+      'markdownlint-config-format-scaffolding': '^1.1.0',
+      prettier: '^2.2.1',
+      'eslint-config-prettier': '^8.3.0',
+      'eslint-plugin-prettier': '^4.0.0',
+    });
   })
 
   test('node api init should work as expected', async () => {

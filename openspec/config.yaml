@@ -1,0 +1,4 @@
+schema: spec-driven
+context: |
+  制品正文用中文。OpenSpec 结构标题与规范性关键词（Why、SHALL、MUST、WHEN、THEN）保持英文。
+  代码标识符、包名、路径、API 不翻译。
