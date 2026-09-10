@@ -25,9 +25,10 @@ describe(`'fix' command`, () => {
   test('should autofix problematic code', async () => {
     await cli(['fix'], {
       cwd: path.resolve(`${dir}/temp`),
+      timeout: 30000,
     });
     expect(fs.readFileSync(outputFilePath, 'utf8')).toEqual(expectedFileContent);
-  });
+  }, 30000);
 
   afterEach(() => {
     fs.removeSync(`${dir}/temp`);

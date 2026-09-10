@@ -9,7 +9,10 @@ describe('shareable-config-runtime', () => {
     expect(pkg.dependencies['@typescript-eslint/parser']).toBeDefined();
     expect(pkg.dependencies['eslint-plugin-import']).toBeDefined();
     expect(pkg.dependencies['vue-eslint-parser']).toBeDefined();
-    expect(pkg.peerDependencies.eslint).toBeDefined();
+    expect(pkg.dependencies['eslint-plugin-n']).toBeDefined();
+    expect(pkg.dependencies['eslint-config-egg']).toBeUndefined();
+    expect(pkg.dependencies['eslint-plugin-jsx-plus']).toBeUndefined();
+    expect(pkg.peerDependencies.eslint).toMatch(/\^9/);
     expect(pkg.devDependencies['@typescript-eslint/parser']).toBeUndefined();
   });
 
@@ -17,8 +20,11 @@ describe('shareable-config-runtime', () => {
     const pkg = readPkg('stylelint-config');
     expect(pkg.dependencies['stylelint-scss']).toBeDefined();
     expect(pkg.dependencies['postcss-scss']).toBeDefined();
-    expect(pkg.peerDependencies.stylelint).toBeDefined();
+    expect(pkg.peerDependencies.stylelint).toMatch(/\^17/);
     expect(pkg.peerDependencies['stylelint-scss']).toBeUndefined();
+    const styleConfig = require(path.resolve(__dirname, '../../stylelint-config'));
+    expect(styleConfig.rules.indentation).toBeUndefined();
+    expect(styleConfig.rules['color-hex-case']).toBeUndefined();
   });
 
   test('code-lint-fs depends on four extends packages and has no config peers', () => {

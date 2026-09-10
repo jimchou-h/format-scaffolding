@@ -25,6 +25,7 @@ const cwd = process.cwd();
 const installDepsIfThereNo = async () => {
   const lintConfigFiles = [].concat(
     glob.sync('.eslintrc?(.@(js|yaml|yml|json))', { cwd }),
+    glob.sync('eslint.config.@(js|cjs|mjs|ts)', { cwd }),
     glob.sync('.stylelintrc?(.@(js|yaml|yml|json))', { cwd }),
     glob.sync('.markdownlint(.@(yaml|yml|json))', { cwd }),
   );
@@ -117,10 +118,12 @@ program
   });
 
 program
-  .command('commit-msg-scan')
+  .command('commit-msg-scan [messageFile]')
   .description('commit message 检查: git commit 时对 commit message 进行检查')
-  .action(() => {
-    const result = spawn.sync('commitlint', ['-E', 'HUSKY_GIT_PARAMS'], { stdio: 'inherit' });
+  .action((messageFile?: string) => {
+    const file = messageFile || process.env.HUSKY_GIT_PARAMS;
+    const args = file ? ['--edit', file] : ['-E', 'HUSKY_GIT_PARAMS'];
+    const result = spawn.sync('commitlint', args, { stdio: 'inherit' });
 
     if (result.status !== 0) {
       process.exit(result.status);

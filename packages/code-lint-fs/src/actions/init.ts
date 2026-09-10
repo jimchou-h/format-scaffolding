@@ -152,12 +152,12 @@ export default async (options: InitOptions) => {
     pkg.scripts[`${PKG_NAME}-fix`] = `${PKG_NAME} fix`;
   }
 
-  // 配置 commit 卡点
+  // 配置 commit 卡点（Husky 9 使用 .husky/ 文件，由模板写入）
   log.info(`Step ${++step}. 配置 git commit 卡点`);
-  if (!pkg.husky) pkg.husky = {};
-  if (!pkg.husky.hooks) pkg.husky.hooks = {};
-  pkg.husky.hooks['pre-commit'] = `${PKG_NAME} commit-file-scan`;
-  pkg.husky.hooks['commit-msg'] = `${PKG_NAME} commit-msg-scan`;
+  delete pkg.husky;
+  if (!pkg.scripts.prepare) {
+    pkg.scripts.prepare = 'husky';
+  }
 
   if (!pkg.devDependencies) pkg.devDependencies = {};
   Object.assign(pkg.devDependencies, getInitDevDependencies(config));

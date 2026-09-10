@@ -1,11 +1,6 @@
 /**
- * 本文件继承了 egg-config-egg 的 node 规则，规则由 eslint-plugin-node 提供
- * @link https://github.com/eggjs/eslint-config-egg/blob/master/lib/rules/node.js
- * @link https://github.com/mysticatea/eslint-plugin-node
+ * Node 规则由 eslint-plugin-n 在 node.js / typescript/node.js 入口以 flat config 提供。
  */
-
 module.exports = {
-  extends: [
-    'eslint-config-egg/lib/rules/node',
-  ],
+  rules: {},
 };

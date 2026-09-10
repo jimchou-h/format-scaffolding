@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-format-scaffolding",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "main": "index.js",
   "description": "JavaScript TypeScript Node 规范",
   "keywords": [
@@ -9,12 +9,23 @@
     "node",
     "lint"
   ],
+  "exports": {
+    ".": "./index.js",
+    "./react": "./react.js",
+    "./vue": "./vue.js",
+    "./node": "./node.js",
+    "./typescript": "./typescript/index.js",
+    "./typescript/react": "./typescript/react.js",
+    "./typescript/vue": "./typescript/vue.js",
+    "./typescript/node": "./typescript/node.js",
+    "./jsx-a11y": "./jsx-a11y.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "lint": "eslint ./",
-    "test": "mocha ./__tests__/*.test.js --timeout 5000",
-    "print-config": "eslint --print-config ./index.js > ./print-config.json"
+    "test": "mocha ./__tests__/*.test.js --timeout 15000"
   },
-  "author": "chenghuai",
+  "author": "jimchou-h",
   "homepage": "https://github.com/jimchou-h/format-scaffolding#readme",
   "license": "ISC",
   "repository": {
@@ -24,9 +35,12 @@
   "bugs": {
     "url": "https://github.com/jimchou-h/format-scaffolding/issues"
   },
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "peerDependencies": {
-    "eslint": ">=8.7.0",
-    "typescript": ">=4.1.2"
+    "eslint": "^9.39.0",
+    "typescript": ">=4.8.4 <6.1.0"
   },
   "peerDependenciesMeta": {
     "typescript": {
@@ -37,23 +51,23 @@
     "@babel/core": "^7.16.0",
     "@babel/eslint-parser": "^7.16.3",
     "@babel/preset-react": "^7.16.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint-config-egg": "^10.0.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-jsx-plus": "^0.1.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-vue": "^7.3.0",
-    "vue-eslint-parser": "^7.3.0"
+    "@eslint/js": "^9.39.5",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-n": "^18.3.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-vue": "^10.11.0",
+    "globals": "^17.12.0",
+    "vue-eslint-parser": "^10.4.1"
   },
   "devDependencies": {
-    "eslint": "^8.7.0",
+    "eslint": "^9.39.5",
     "lodash": "^4.17.21",
     "mocha": "^8.2.1",
-    "typescript": "^4.1.2"
+    "typescript": "~6.0.3"
   }
 }

@@ -37,6 +37,7 @@ const packagePrefixesToRemove = [
 const checkUselessConfig = (cwd: string): string[] => {
   return []
     .concat(glob.sync('.eslintrc?(.@(js|cjs|yaml|yml|json))', { cwd }))
+    .concat(glob.sync('.eslintignore', { cwd }))
     .concat(glob.sync('.stylelintrc?(.@(js|cjs|yaml|yml|json))', { cwd }))
     .concat(glob.sync('.markdownlint@(rc|.@(yaml|yml|json|jsonc))', { cwd }))
     .concat(

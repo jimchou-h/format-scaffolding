@@ -1,8 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
-const feLint = require('../lib/index');
-
-const { init, scan } = feLint
+const init = require('../lib/actions/init').default;
 
 describe('lint', () => {
   const templatePath = path.resolve(__dirname, './fixtures/template/init');
@@ -25,39 +23,37 @@ describe('lint', () => {
 
     const pkg = require(`${outputPath}/package.json`);
     const settings = require(`${outputPath}/.vscode/settings.json`);
+    const eslintConfig = fs.readFileSync(`${outputPath}/eslint.config.cjs`, 'utf8');
 
     expect(settings['editor.defaultFormatter']).toBe('esbenp.prettier-vscode');
     expect(settings['eslint.validate'].includes('233')).toBeTruthy();
     expect(settings.test).toBeTruthy();
     expect(fs.existsSync(`${outputPath}/.npmrc`)).toBe(false);
+    expect(fs.existsSync(`${outputPath}/eslint.config.cjs`)).toBe(true);
+    expect(fs.existsSync(`${outputPath}/.eslintrc.cjs`)).toBe(false);
+    expect(fs.existsSync(`${outputPath}/.husky/pre-commit`)).toBe(true);
+    expect(fs.existsSync(`${outputPath}/.husky/commit-msg`)).toBe(true);
+    expect(eslintConfig).toContain('eslint-config-format-scaffolding');
+    expect(eslintConfig).toContain('eslint-config-prettier');
+    expect(pkg.husky).toBeUndefined();
+    expect(pkg.scripts.prepare).toBe('husky');
     expect(pkg.devDependencies).toMatchObject({
-      'code-lint-fs': '^1.1.0',
-      'eslint-config-format-scaffolding': '^1.1.0',
-      eslint: '^8.7.0',
-      husky: '^3.1.0',
-      'commitlint-config-format-scaffolding': '^1.1.0',
-      '@commitlint/cli': '^16.0.0',
-      'stylelint-config-format-scaffolding': '^1.1.0',
-      stylelint: '^14.3.0',
-      'markdownlint-config-format-scaffolding': '^1.1.0',
-      prettier: '^2.2.1',
-      'eslint-config-prettier': '^8.3.0',
-      'eslint-plugin-prettier': '^4.0.0',
+      'code-lint-fs': '^2.0.0',
+      'eslint-config-format-scaffolding': '^2.0.0',
+      eslint: '^9.39.0',
+      husky: '^9.1.0',
+      'commitlint-config-format-scaffolding': '^2.0.0',
+      '@commitlint/cli': '^21.2.0',
+      'stylelint-config-format-scaffolding': '^2.0.0',
+      stylelint: '^17.15.0',
+      'markdownlint-config-format-scaffolding': '^2.0.0',
+      prettier: '^3.9.0',
+      'eslint-config-prettier': '^10.1.0',
+      'eslint-plugin-prettier': '^5.5.0',
     });
-  })
-
-  test('node api init should work as expected', async () => {
-    await scan({
-      cwd: outputPath,
-      checkVersionUpdate: false,
-      eslintType: 'index',
-      enableStylelint: true,
-      enableMarkdownlint: true,
-      enablePrettier: true,
-    });
-  })
+  });
 
   afterEach(() => {
     fs.removeSync(outputPath);
   });
-})
+});

@@ -1,0 +1,20 @@
+const scaffolding = require('<%= eslintType === "index" ? "eslint-config-format-scaffolding" : `eslint-config-format-scaffolding/${eslintType}` %>');
+<% if (enablePrettier) { %>const prettier = require('eslint-config-prettier');
+<% } %>
+module.exports = [
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/build/**',
+      '**/dist/**',
+      '**/coverage/**',
+      '**/es/**',
+      '**/lib/**',
+      '**/*.min.js',
+      '**/*-min.js',
+      '**/*.bundle.js',
+    ],
+  },
+  ...scaffolding,
+<% if (enablePrettier) { %>  prettier,
+<% } %>];

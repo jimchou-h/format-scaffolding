@@ -1,4 +1,4 @@
-import { LintResult } from 'stylelint';
+import type { LintResult } from 'stylelint';
 import type { ScanResult } from '../../types';
 import { getStylelintRuleDocUrl } from './get-stylelint-doc-url';
 

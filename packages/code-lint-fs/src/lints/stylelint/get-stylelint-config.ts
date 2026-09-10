@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import glob from 'glob';
 import path from 'path';
-import { LinterOptions } from 'stylelint';
+import type { LinterOptions } from 'stylelint';
 import type { Config, PKG, ScanOptions } from '../../types';
 import { STYLELINT_IGNORE_PATTERN } from '../../utils/constants';
 

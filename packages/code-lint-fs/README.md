@@ -135,13 +135,16 @@ config 参数如下：
 
 ##### ESLintType
 
-- `default`: JavaScript 项目（未使用 React 和 Vue 的 JS 项目）
+- `index`: JavaScript 项目（未使用 React、Vue、Node 的 JS 项目）
 - `react`: JavaScript + React 项目
-- `vue`: JavaScript + Vue 项目
-- `typescript/default`: TypeScript 项目（未使用 React 和 Vue 的 TS 项目）
+- `vue`: JavaScript + Vue 3 项目
+- `node`: JavaScript + Node.js 项目
+- `typescript`: TypeScript 项目
 - `typescript/react`: TypeScript + React 项目
-- `typescript/vue`: TypeScript + Vue 项目
-- `es5`: ES5 及之前版本的 JavaScript 老项目
+- `typescript/vue`: TypeScript + Vue 3 项目
+- `typescript/node`: TypeScript + Node.js 项目
+
+2.0 不再提供 `es5` / `rax`。`init` 写入 `eslint.config.cjs`（ESLint 9 flat config），不再写入 `.eslintrc*`。
 
 ## 配置
 

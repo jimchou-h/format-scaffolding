@@ -9,20 +9,29 @@ export const CONFIG_PKG = {
 
 /** 与 code-lint-fs 当前依赖线对齐，供 init 写入用户项目 */
 export const INIT_ENGINE_VERSIONS = {
-  eslint: '^8.7.0',
-  stylelint: '^14.3.0',
-  prettier: '^2.2.1',
-  '@commitlint/cli': '^16.0.0',
-  husky: '^3.1.0',
-  'eslint-config-prettier': '^8.3.0',
-  'eslint-plugin-prettier': '^4.0.0',
+  eslint: '^9.39.0',
+  stylelint: '^17.15.0',
+  prettier: '^3.9.0',
+  '@commitlint/cli': '^21.2.0',
+  husky: '^9.1.0',
+  'eslint-config-prettier': '^10.1.0',
+  'eslint-plugin-prettier': '^5.5.0',
+  typescript: '~6.0.3',
 } as const;
+
+const TS_ESLINT_TYPES = new Set([
+  'typescript',
+  'typescript/react',
+  'typescript/vue',
+  'typescript/node',
+]);
 
 export interface InitDepOptions {
   enableESLint?: boolean;
   enableStylelint?: boolean;
   enableMarkdownlint?: boolean;
   enablePrettier?: boolean;
+  eslintType?: string;
 }
 
 /**
@@ -41,6 +50,10 @@ export function getInitDevDependencies(config: InitDepOptions): Record<string, s
   if (config.enableESLint !== false) {
     deps[CONFIG_PKG.eslint] = range;
     deps.eslint = INIT_ENGINE_VERSIONS.eslint;
+  }
+
+  if (config.eslintType && TS_ESLINT_TYPES.has(config.eslintType)) {
+    deps.typescript = INIT_ENGINE_VERSIONS.typescript;
   }
 
   if (config.enableStylelint) {

@@ -42,14 +42,6 @@ export const PROJECT_TYPES: Array<{ name: string; value: string }> = [
     value: 'typescript/react',
   },
   {
-    name: 'Rax 项目（JavaScript）',
-    value: 'rax',
-  },
-  {
-    name: 'Rax 项目（TypeScript）',
-    value: 'typescript/rax',
-  },
-  {
     name: 'Vue 项目（JavaScript）',
     value: 'vue',
   },
@@ -64,10 +56,6 @@ export const PROJECT_TYPES: Array<{ name: string; value: string }> = [
   {
     name: 'Node.js 项目（TypeScript）',
     value: 'typescript/node',
-  },
-  {
-    name: '使用 ES5 及之前版本 JavaScript 的老项目',
-    value: 'es5',
   },
 ];
 

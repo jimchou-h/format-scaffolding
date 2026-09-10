@@ -24,6 +24,7 @@ export async function doStylelint(options: DoStylelintOptions) {
       ignore: STYLELINT_IGNORE_PATTERN.map((pattern) => pattern.endsWith('/') ? `${pattern}**` : pattern),
     });
   }
+  if (files.length === 0) return [];
   const data = await stylelint.lint({
     ...getStylelintConfig(options, options.pkg, options.config),
     files,

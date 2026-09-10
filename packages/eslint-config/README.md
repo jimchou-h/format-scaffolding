@@ -1,8 +1,17 @@
 # eslint-config-format-scaffolding
 
-> JavaScript TypeScript Node 规范
+> JavaScript TypeScript Node 规范（ESLint 9 flat config）
 
-提供了多套配置文件以支持 `JavaScript`、`TypeScript`、`React`、`Vue`、`Node.js` 等多种项目类型。
+2.0 各入口导出 **flat config 数组**，在用户项目 `eslint.config.cjs` 中展开：
+
+```js
+module.exports = [...require('eslint-config-format-scaffolding')];
+```
+
+公开 preset：`.` / `react` / `vue` / `node` / `typescript` / `typescript/react` / `typescript/vue` / `typescript/node`。已移除 ES5、Rax、`essential/`。
+
+提供了多套配置文件以支持 `JavaScript`、`TypeScript`、`React`、`Vue 3`、`Node.js` 等多种项目类型。
+
 
 ## JavaScript 项目 - eslint-config-format-scaffolding
 
