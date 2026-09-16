@@ -12,8 +12,8 @@ export default defineComponent({
 
 <template>
   <main class="page">
-    <h1>format-scaffolding Vue demo</h1>
-    <p>用来验证 pnpm 下 extends 包与引擎是否能被解析。</p>
+    <h1>format-scaffolding 2.0 Vue demo</h1>
+    <p>验证 ESLint 9 flat config、pnpm 直接依赖，以及 Vue 3 + TypeScript 能否被扫描。</p>
     <HelloCard title="可运行页面" />
   </main>
 </template>

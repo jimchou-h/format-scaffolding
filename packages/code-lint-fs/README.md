@@ -37,9 +37,9 @@ npm install code-lint-fs -g
 
 具体会做以下事情：
 
-- 将规范所需依赖写入项目 `devDependencies` 并安装：脚手架 `code-lint-fs`、四个 extends 包，以及 `eslint` / `husky` / `@commitlint/cli` 等引擎（`stylelint`、`prettier` 等按 init 选项）。依赖必须是项目的**直接依赖**，否则 pnpm 无法解析 `extends` 与编辑器插件。已有项目升级到 1.1.0 后请再执行一次 `code-lint-fs init`。
+- 将规范所需依赖写入项目 `devDependencies` 并安装：脚手架 `code-lint-fs`、四个规则包，以及 `eslint` / `husky` / `@commitlint/cli` 等引擎（`stylelint`、`prettier` 等按 init 选项）。依赖必须是项目的**直接依赖**，否则 pnpm 无法解析配置与编辑器插件。从 1.x 升到 2.0 后请再执行一次 `code-lint-fs init`（2.0 不兼容 `.eslintrc*`）。
 - 写入各种配置文件，包括：
-  - `.eslintrc.js`、`.eslintignore`：ESLint 配置（继承 `eslint-config-format-scaffolding`）及黑名单文件
+  - `eslint.config.cjs`：ESLint 9 flat config（展开 `eslint-config-format-scaffolding` 对应 preset）
   - `.stylelintrc.js`、`.stylelintignore`：stylelint 配置（继承 `stylelint-config-format-scaffolding`）及黑名单文件
   - `commitlint.config.js`：commitlint 配置（继承 `commitlint-config-format-scaffolding`）
   - `.markdownlint.json`、`.markdownlintignore`：`markdownlint` 配置及黑名单文件
@@ -47,8 +47,8 @@ npm install code-lint-fs -g
   - `.editorconfig`：符合规范的 [editorconfig](https://editorconfig.org/)
   - `.vscode/extensions.json`：写入规范相关的 [VSCode 插件推荐](https://code.visualstudio.com/docs/editor/extension-gallery#_workspace-recommended-extensions)，包括 `ESLint`、`stylelint`、`markdownlint`、`prettier` 等
   - `.vscode/settings.json`：写入规范相关的 [VSCode 设置](https://code.visualstudio.com/docs/getstarted/settings#_settings-file-locations)，设置 `ESLint` 和 `stylelint` 插件的 `validate` 及**保存时自动运行 fix**，如果选择使用 `Prettier`，会同时将 `prettier-vscode` 插件设置为各前端语言的 defaultFormatter，并配置**保存时自动格式化**
-  - `code-lint-fs.config.js`code-lint-fs 包的一些配置，如启用的功能等
-- 配置 git commit 卡口：使用 [husky](https://www.npmjs.com/package/husky) 设置代码提交卡口，在 git commit 时会运行 `code-lint-fs commit-file-scan` 和 `code-lint-fs commit-msg-scan` 分别对提交文件和提交信息进行规范检查。`code-lint-fs commit-file-scan` 默认仅对 error 问题卡口，如果你想对 warn 问题也卡口，可以增加 `--strict` 参数以开启严格模式
+  - `code-lint-fs.config.cjs`：脚手架自身开关（启用哪些 linter 等）
+- 配置 git commit 卡口：写入 Husky 9 的 `.husky/pre-commit` 与 `.husky/commit-msg`（不再写 `package.json` 的 `husky.hooks`）。提交时运行 `code-lint-fs commit-file-scan` 和 `code-lint-fs commit-msg-scan`。`commit-file-scan` 默认仅对 error 卡口，加 `--strict` 则对 warn 也卡口
 
 > 注 1：如果项目已经配置过 ESLint、stylelint 等 Linter，执行 `code-lint-fs init` 将会提示存在冲突的依赖和配置，并在得到确认后进行覆盖：
 >
@@ -67,7 +67,7 @@ npm install code-lint-fs -g
 
 > 注 1：事实上，你可以在任意目录执行 `code-lint-fs scan` `code-lint-fs` 会根据文件类型、JSON 等特征嗅探项目类型。但我们还是推荐在执行过 `code-lint-fs init` 的项目根目录执行 `code-lint-fs scan`，以得到最准确的扫描结果。
 >
-> 注 2: `code-lint-fs` 会根据项目内有无 eslint 和 stylelint 配置文件判断使用项目的配置文件还是 `code-lint-fs` 默认配置进行扫描。若使用项目的，在未安装依赖时会帮其安装（执行 npm i）。若使用项目配置扫描失败，则使用默认配置扫描
+> 注 2: `code-lint-fs` 根据项目内有无 `eslint.config.*`、stylelint 配置文件判断用项目配置还是内置默认 preset。若用项目配置且未安装依赖，会先执行安装。
 
 #### `code-lint-fs fix`：一键修复
 
@@ -144,7 +144,7 @@ config 参数如下：
 - `typescript/vue`: TypeScript + Vue 3 项目
 - `typescript/node`: TypeScript + Node.js 项目
 
-2.0 不再提供 `es5` / `rax`。`init` 写入 `eslint.config.cjs`（ESLint 9 flat config），不再写入 `.eslintrc*`。
+2.0 不再提供 `es5` / `rax`。
 
 ## 配置
 
@@ -156,11 +156,11 @@ config 参数如下：
 | enableStylelint     | boolean                 | true   | 是否启用 stylelint                                                                             |
 | enableMarkdownlint  | boolean                 | true   | 是否启用 markdownlint                                                                          |
 | enablePrettier      | boolean                 | -      | 是否启用 Prettier                                                                              |
-| eslintOptions       | ESLint.Options          | -      | ESLint 配置项，若未设置将使用执行目录下或内置的默认 eslintrc 和 eslintignore 进行扫描          |
+| eslintOptions       | ESLint.Options          | -      | ESLint 9 配置项；未设置时使用项目 `eslint.config.*`，若无则加载内置 flat preset          |
 | stylelintOptions    | stylelint.LinterOptions | -      | stylelint 配置项，若未设置将使用执行目录下或内置的默认 stylelintrc 和 stylelintignore 进行扫描 |
 | markdownlintOptions | markdownlint.Options    | -      | markdownlint 配置项，若未设置将使用执行目录下或内置的默认 markdownlint 配置文件进行扫描        |
 
-`code-lint-fs` 会读取执行目录下的 `code-lint-fs.config.js` 作为配置文件。`code-lint-fs init` 会在执行目录下新增如下的 `code-lint-fs.config.js` 文件：
+`code-lint-fs` 会读取执行目录下的 `code-lint-fs.config.cjs`。`init` 会写入类似：
 
 ```js
 module.exports = {
@@ -175,17 +175,4 @@ module.exports = {
 
 ### TypeScript 项目扫描性能问题
 
-如果你的 TS 项目 commit 卡口和 `code-lint-fs scan` 运行时间很长，可以通过如下在 `.eslintrc.js` 中增加以下配置提升性能：
-
-```js
-module.exports = {
-  parserOptions: {
-    project: [], // for lint performance
-    createDefaultProgram: false, // for lint performance
-  },
-  rules: {
-    '@typescript-eslint/dot-notation': 0, // for lint performance
-    '@typescript-eslint/restrict-plus-operands': 0, // for lint performance
-  },
-};
-```
+如果你的 TS 项目 commit 卡口和 `code-lint-fs scan` 运行时间很长，可在 `eslint.config.cjs` 里覆盖类型感知相关项，例如关掉部分 `@typescript-eslint` 规则，或按 [typescript-eslint projectService](https://typescript-eslint.io/getting-started/typed-linting) 收窄参与类型检查的文件。
