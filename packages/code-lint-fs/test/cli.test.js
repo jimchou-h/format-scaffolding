@@ -8,9 +8,10 @@ const cli = (args, options) => {
 };
 
 test('--version should output right version', async () => {
-  const { stdout } = await cli(['--version']);
+  // cli.js 顶层会拉 eslint/stylelint 等依赖，冷启动常超过 Jest 默认 5s
+  const { stdout } = await cli(['--version'], { timeout: 30000 });
   expect(stdout).toBe(packageJson.version);
-});
+}, 30000);
 
 describe(`'fix' command`, () => {
   const dir = path.resolve(__dirname, './fixtures/autofix');
@@ -38,18 +39,30 @@ describe(`'fix' command`, () => {
 describe(`'exec' command`, () => {
   const semverRegex = /(\d+)\.(\d+)\.(\d+)/;
 
-  test(`'exec eslint' should work as expected`, async () => {
-    const { stdout } = await cli(['exec', 'eslint', '--version']);
-    expect(stdout).toMatch(semverRegex);
-  });
+  test(
+    `'exec eslint' should work as expected`,
+    async () => {
+      const { stdout } = await cli(['exec', 'eslint', '--version'], { timeout: 30000 });
+      expect(stdout).toMatch(semverRegex);
+    },
+    30000,
+  );
 
-  test(`'exec stylelint' should work as expected`, async () => {
-    const { stdout } = await cli(['exec', 'stylelint', '--version']);
-    expect(stdout).toMatch(semverRegex);
-  });
+  test(
+    `'exec stylelint' should work as expected`,
+    async () => {
+      const { stdout } = await cli(['exec', 'stylelint', '--version'], { timeout: 30000 });
+      expect(stdout).toMatch(semverRegex);
+    },
+    30000,
+  );
 
-  test(`'exec commitlint' should work as expected`, async () => {
-    const { stdout } = await cli(['exec', 'commitlint', '--version']);
-    expect(stdout).toMatch(semverRegex);
-  });
+  test(
+    `'exec commitlint' should work as expected`,
+    async () => {
+      const { stdout } = await cli(['exec', 'commitlint', '--version'], { timeout: 30000 });
+      expect(stdout).toMatch(semverRegex);
+    },
+    30000,
+  );
 });
